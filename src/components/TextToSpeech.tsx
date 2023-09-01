@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type TextToSpeechProps = {
   text: string;
@@ -24,13 +24,17 @@ const TextToSpeech = ({ text }: TextToSpeechProps) => {
     }
   };
 
+  useEffect(() => {
+    speech.text = text;
+  }, [text]);
+
   return (
-    <section className="flex mt-4 w-full md:w-1/2  justify-between">
+    <section className="flex mt-4 w-full md:w-1/2  px-4 md:px-0 justify-between">
       <button className="text-to-speech-btn" onClick={handleSpeak}>
         Listen
       </button>
       <button className="text-to-speech-btn" onClick={handlePauseandResume}>
-        Pause
+        {isPlaying ? "Resume" : "Pause"}
       </button>
     </section>
   );
