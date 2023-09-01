@@ -7,12 +7,21 @@ type TextToSpeechProps = {
 const TextToSpeech = ({ text }: TextToSpeechProps) => {
   const speech = new SpeechSynthesisUtterance();
   speech.text = text;
+  const [isPlaying, setIsPlaying] = useState(false);
+
   const handleSpeak = () => {
+    setIsPlaying(true);
     speechSynthesis.speak(speech);
   };
 
-  const handlePause = () => {
-    speechSynthesis.pause();
+  const handlePauseandResume = () => {
+    if (isPlaying) {
+      speechSynthesis.pause();
+      setIsPlaying(false);
+    } else {
+      speechSynthesis.resume();
+      setIsPlaying(true);
+    }
   };
 
   return (
@@ -20,7 +29,7 @@ const TextToSpeech = ({ text }: TextToSpeechProps) => {
       <button className="text-to-speech-btn" onClick={handleSpeak}>
         Listen
       </button>
-      <button className="text-to-speech-btn" onClick={handlePause}>
+      <button className="text-to-speech-btn" onClick={handlePauseandResume}>
         Pause
       </button>
     </section>
