@@ -34,7 +34,7 @@ const TextToSpeech = ({ text }: TextToSpeechProps) => {
         Listen
       </button>
       <button className="text-to-speech-btn" onClick={handlePauseandResume}>
-        {isPlaying ? "Resume" : "Pause"}
+        {!isPlaying ? "Resume" : "Pause"}
       </button>
     </section>
   );
