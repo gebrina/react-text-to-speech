@@ -11,6 +11,7 @@ const TextToSpeech = ({ text }: TextToSpeechProps) => {
 
   const handleSpeak = () => {
     setIsPlaying(true);
+    speechSynthesis.cancel();
     speechSynthesis.speak(speech);
   };
 
